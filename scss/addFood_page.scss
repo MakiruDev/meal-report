@@ -1,0 +1,391 @@
+@use 'variables';
+@use 'mixins.scss' as mix;
+
+
+// css code
+@mixin mixin-addFood-main($RM-input) {
+    .addFood-main {
+        height: 80vh;
+        width: auto;
+
+        position: relative;
+    }
+
+    .editFood-hidden-box {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.2);
+        z-index: 10;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas:
+            'q w e'
+            'a s d'
+            'z x c';
+    }
+
+    .editFood-hidden-box button {
+        grid-area: z;
+        height: 70px;
+        width: 240px;
+        font-size: 1.18rem;
+        border: 1px solid #1d1c29;
+        border-radius: 20px;
+        $bg: #d3fbd8;
+        background-color: $bg;
+        color: #1d1c29;
+
+        justify-self: center;
+        align-self: center; // @include mix.margin-tblr(50px, 0, 30px, 0);
+        @include mix.margin-tblr(0, 0, 0, 0);
+        @include mix.padding-tblr(0, 0, 0, 0);
+
+        // align-items: center;
+        // justify-content: flex-start;
+    }
+
+    .editFood-hidden-box button i {
+        font-size: 1rem;
+    }
+}
+
+@mixin mixin-addFood-mainer($RM-input) {
+    .addFood-mainer {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        background-color: variables.$bg-001;
+    }
+}
+
+@mixin mixin-addFood-mainer-left($RM-input) {
+    .addFood-mainer-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100%;
+        width: 40%;
+        padding-top: 5%;
+        gap: 30px;
+        // color: variables.$genaral-text-color-2;
+        color: variables.$genaral-text-color-2;
+    }
+
+    .addFood-mainer-l-text {
+        font-size: 1.5rem;
+        margin: 0;
+        height: max-content;
+    }
+
+    // .addFood-mainer-l-img {}
+
+    .addFood-mainer-l-img img {
+        height: 270px;
+        width: 270px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+
+    .addFood-mainer-l-input {
+        color: variables.$genaral-text-color-2;
+        // color: variables.$color-palette-1;
+    }
+}
+
+@mixin mixin-addFood-mainer-right($RM-input) {
+    .addFood-mainer-right {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 60%;
+        color: variables.$genaral-text-color-2;
+        // color: variables.$color-palette-1;
+    }
+}
+
+@mixin mixin-addFood-mr-name($RM-input) {
+    .addFood-mr-name {
+        display: grid;
+        grid-template-columns: 1fr 1fr 0.25fr 0.75fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+            'text-name    text-name    text-name    btn-edit   btn-edit'
+            'input-name   input-name   input-name   btn-edit   btn-edit';
+        height: 20%;
+        width: 100%;
+        padding-top: 50px;
+    }
+
+    .addFood-mr-text-name {
+        grid-area: text-name;
+    }
+
+    .addFood-mr-input-name {
+        grid-area: input-name;
+        height: max-content;
+    }
+
+    .addFood-mr-input-name input {
+        height: 40px;
+        width: 80%;
+        border: none;
+        border-radius: 5px;
+        padding: 0 10px;
+        font-size: 1rem;
+        color: variables.$genaral-text-color-2;
+        // color: variables.$color-palette-1;
+        outline: none;
+    }
+
+    .addFood-mr-btn-edit {
+        height: 100%;
+        width: max-content;
+        grid-area: btn-edit;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .addFood-mr-btn-edit div {
+        height: 70%;
+        width: 70%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        // gap: 10px;
+    }
+
+    .addFood-mr-btn-edit div div,
+    .addFood-mr-btn-edit div button {
+        height: 45px;
+        width: 100%;
+        border: none;
+        border-radius: 10px;
+        background-color: variables.$bg-new-color-1;
+
+        position: absolute;
+        z-index: 1;
+    }
+
+    .addFood-mr-btn-edit div button {
+        background-color: variables.$color-palette-1;
+        color: variables.$genaral-text-color-2;
+
+        z-index: 2;
+    }
+
+    .addFood-mr-btn-edit div button:hover {
+        cursor: pointer;
+        opacity: 0.8;
+        transition: 0.3s;
+        color: variables.$genaral-text-color-2-hover;
+    }
+
+    .addFood-mr-unitType {
+        grid-area: btn-edit;
+        height: 100%;
+        width: max-content;
+        @include mix.margin-tblr(0, 0, 0, auto);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .addFood-mr-unitType p {
+        font-size: 0.8rem;
+        @include mix.margin-tblr(0, 0, 0, 0);
+    }
+
+    .addFood-mr-unitType #addFood-mr-type-g,
+    .addFood-mr-unitType #addFood-mr-type-dish {
+        @include mix.margin-tblr(3.5px, 3.5px, 0, 0);
+    }
+
+    .addFood-mr-unitType button {
+        @include mix.margin-tblr(auto, 0, 0, 0);
+        @include mix.btn-HwFr(35px, 100px, 1rem, 10px);
+    }
+
+}
+
+@mixin mixin-addFood-mr-pfc-kcal($RM-input) {
+    .addFood-mr-pfc-kcal {
+        display: grid;
+        height: 60%;
+        width: 100%;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+            'text-p text-f'
+            'input-p input-f'
+            'text-c text-k'
+            'input-c input-k';
+    }
+
+    $area-text: text-p, text-f, text-c, text-k;
+    $area-input: input-p, input-f, input-c, input-k;
+
+    @for $i from 1 through 4 {
+        .addFood-mr-text-pfc:nth-child(#{$i * 2 - 1}) {
+            grid-area: nth($area-text, $i);
+        }
+
+        .addFood-mr-input-pfc:nth-child(#{$i * 2 - 1}) {
+            grid-area: nth($area-input, $i);
+        }
+    }
+
+    .addFood-mr-text-pfc {
+        margin: 0;
+        padding: 0;
+        margin-top: 10%;
+
+        justify-self: flex-start;
+        align-self: flex-end;
+    }
+
+    .addFood-ex-div {
+        display: flex;
+    }
+
+    .addFood-ex-div p {
+        @include mix.margin-tblr(0, 0, 0, 0);
+    }
+
+    .addFood-mr-text-pfc button {
+        @include mix.margin-tblr(0, 0, 30px, 0);
+        @include mix.btn-HWFsRBg(max-content, max-content, 0.9rem, 5px,
+            variables.$color-palette-1, variables.$genaral-text-color-2);
+    }
+
+    .addFood-mr-input-pfc {
+        margin-top: 10%;
+        display: flex;
+        align-self: flex-start;
+    }
+
+    .addFood-mr-input-pfc input {
+        height: 35px;
+        width: 70%;
+        border: none;
+        border-radius: 5px;
+        padding: 0 10px;
+        font-size: 1rem;
+        color: variables.$genaral-text-color-2;
+        // color: variables.$color-palette-1;
+        outline: none;
+        // align-self: start;
+    }
+
+    .addFood-mr-input-pfc div {
+        height: 35px;
+        width: 70%;
+
+        position: relative;
+    }
+
+    .addFood-mr-input-pfc div input,
+    .addFood-mr-input-pfc div #id-un-auto {
+        height: 100%;
+        width: 100%;
+
+        // height: 35px;
+        // width: 70%;
+        border: none;
+        border-radius: 5px;
+        padding: 0 10px;
+        font-size: 1rem;
+        color: variables.$genaral-text-color-2;
+        // color: variables.$color-palette-1;
+        outline: none;
+        // align-self: start;
+
+        position: absolute;
+        z-index: 1;
+    }
+
+    .addFood-mr-input-pfc div #id-un-auto {
+        z-index: 3;
+        opacity: 0;
+        background-color: aqua;
+        cursor: text;
+    }
+
+}
+
+@mixin mixin-addFood-mr-submit($RM-input) {
+    .addFood-mr-submit {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20%;
+        width: 100%;
+
+        position: relative;
+    }
+
+    .addFood-mr-submit div,
+    .addFood-mr-submit button {
+        height: 50px;
+        width: 250px;
+        border: none;
+        border-radius: 10px;
+        background-color: variables.$bg-new-color-1;
+        color: variables.$genaral-text-color-2;
+        font-size: 1.2rem;
+        cursor: pointer;
+
+        position: absolute;
+        z-index: 1;
+    }
+
+    .addFood-mr-submit button {
+        background-color: variables.$color-palette-1;
+        z-index: 2;
+    }
+
+    .addFood-mr-submit button:hover {
+        opacity: 0.8;
+        transition: 0.3s;
+        color: variables.$genaral-text-color-2-hover;
+    }
+}
+
+
+@include mixin-addFood-main(variables.$RM);
+@include mixin-addFood-mainer(variables.$RM);
+@include mixin-addFood-mainer-left(variables.$RM);
+@include mixin-addFood-mainer-right(variables.$RM);
+
+@include mixin-addFood-mr-name(variables.$RM);
+@include mixin-addFood-mr-pfc-kcal(variables.$RM);
+@include mixin-addFood-mr-submit(variables.$RM);
+
+// ------------------------------------------------------------------------------
+
+
+
+// responsive functions
+@mixin res-max-width($max-width-input, $RM-Use) {
+    @media (max-width: $max-width-input) {
+
+        @include mixin-addFood-main($RM-Use);
+        // @include mixin-listMeal-main-divner($RM-Use);
+        // @include mixin-listMeal-main-divner-text($RM-Use);
+        // @include mixin-listMeal-main-divner-gridner($RM-Use);
+        // @include mixin-listMeal-main-divner-gridner-box($RM-Use);
+    }
+}
+
+// responsive code
+// @include res-max-width(615px, 0.7);
+// @include res-max-width(375px, 0.6);
+// @include res-max-width(290px, 0.4);

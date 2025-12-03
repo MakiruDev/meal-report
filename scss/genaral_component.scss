@@ -1,0 +1,89 @@
+@use 'variables';
+
+@mixin mixin-body() {
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-color: variables.$bg-new-color-1;
+    }
+
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        width: 100%;
+    }
+
+    main {
+        flex: 1 1 auto;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        // align-items: flex-start;
+    }
+
+    footer {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        margin-top: auto;
+    }
+}
+
+
+@mixin mixin-genaral-navbar-div($RM-input) {
+    .genaral-navbar-div {
+        min-height: clamp(48px, 7.5vh, 72px);
+        background-color: variables.$bg-navbar-color;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        padding-inline: 16px;
+    }
+}
+
+
+@mixin mixin-genaral-footer-div($RM-input) {
+    .index-footer-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: (10px * $RM-input);
+        background-color: variables.$bg-new-color-1;
+        color: variables.$text-footer-color;
+        padding: (10px * $RM-input) 0;
+        width: 100%;
+    }
+
+    .index-footer-div-icon {
+        font-size: 2.5rem * $RM-input;
+    }
+
+    .index-footer-div-p {
+        margin: 0;
+        font-size: (1.4rem * $RM-input);
+    }
+}
+
+@include mixin-body();
+@include mixin-genaral-navbar-div(variables.$RM);
+@include mixin-genaral-footer-div(variables.$RM);

@@ -1,0 +1,35 @@
+@use 'variables' as v;
+
+@mixin margin-tblr($t, $b, $l, $r) {
+    margin-top: $t;
+    margin-bottom: $b;
+    margin-left: $l;
+    margin-right: $r;
+}
+
+@mixin padding-tblr($t, $b, $l, $r) {
+    padding-top: $t;
+    padding-bottom: $b;
+    padding-left: $l;
+    padding-right: $r;
+}
+
+@mixin btn-HWFsRBg($h, $w, $f-size, $radius, $color, $f-color) {
+    height: $h;
+    width: $w;
+    font-size: $f-size;
+    border: none;
+    border-radius: $radius;
+    background-color: $color;
+    color: $f-color;
+}
+
+@mixin btn-HwFr($h, $w, $f-size, $radius) {
+    height: $h;
+    width: $w;
+    font-size: $f-size;
+    border: none;
+    border-radius: $radius;
+    background-color: v.$color-palette-1;
+    color: v.$genaral-text-color-2;
+}

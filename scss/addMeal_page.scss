@@ -1,0 +1,432 @@
+@use 'variables.scss';
+@use 'mixins.scss' as mix;
+@use 'sass:math';
+
+
+// function scss
+@mixin margin-tblr($t, $b, $l, $r) {
+    margin-top: $t;
+    margin-bottom: $b;
+    margin-left: $l;
+    margin-right: $r;
+}
+
+@mixin padding-tblr($t, $b, $l, $r) {
+    padding-top: $t;
+    padding-bottom: $b;
+    padding-left: $l;
+    padding-right: $r;
+}
+
+@mixin btn-HWFsRBg($h, $w, $f-size, $radius, $color) {
+    height: $h;
+    width: $w;
+    font-size: $f-size;
+    border: none;
+    border-radius: $radius;
+    background-color: $color;
+}
+
+
+// css code
+// main-tag > formner > addMeal-hidden-box
+@mixin mixin-addMeal-main-tag($RM-input) {
+    .addMeal-main-tag {
+        // display: flex;
+        height: 100%;
+        // width: auto;
+        // background-color: variables.$color-palette-1;
+    }
+
+    .addMeal-hidden-box {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.2);
+        z-index: 10;
+
+        display: grid;
+        $m-grid-col: 80fr;
+        $m-grid-col-lr: (
+            100 - $m-grid-col) / 2;
+        grid-template-columns: $m-grid-col-lr $m-grid-col $m-grid-col-lr;
+        $m-grid-row: 85fr;
+        $m-grid-row-lr: (
+            100 - $m-grid-row) / 2;
+        grid-template-rows: $m-grid-row-lr $m-grid-row $m-grid-row-lr;
+        grid-template-areas:
+            'q w e'
+            'a s d'
+            'z x c';
+    }
+
+    // .addMeal-hidden-box button {
+    //     grid-area: q;
+    //     height: 70px;
+    //     width: 240px;
+    //     font-size: 1.18rem;
+    //     border: 1px solid #1d1c29;
+    //     border-radius: 20px;
+    //     $bg: #d3fbd8;
+    //     background-color: $bg;
+    //     color: #1d1c29;
+
+    //     justify-self: center;
+    //     align-self: center; // @include mix.margin-tblr(50px, 0, 30px, 0);
+    //     @include mix.margin-tblr(0, 0, 0, 0);
+    //     @include mix.padding-tblr(0, 0, 0, 0);
+
+    //     // align-items: center;
+    //     // justify-content: flex-start;
+    // }
+
+    // .addMeal-hidden-box button i {
+    //     font-size: 1rem;
+    // }
+
+    .addMeal-main-formner {
+        height: 100%;
+        width: 100%;
+        background-color: variables.$bg-001;
+
+        position: relative;
+    }
+
+    .addMeal-main-formner-grid {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        //     display: grid;
+
+        //     $addMeal-mfg-grid-row-managebar: 15fr;
+        //     $addMeal-mfg-grid-row-submit: 15fr;
+        //     $addMeal-mfg-grid-template: 100fr - ($addMeal-mfg-grid-row-managebar + $addMeal-mfg-grid-row-submit
+        //     );
+        // grid-template-areas:
+        //     'managebar'
+        //     'food-content'
+        //     'submit';
+        // grid-template-rows: $addMeal-mfg-grid-row-managebar $addMeal-mfg-grid-template $addMeal-mfg-grid-row-submit;
+        // grid-template-columns: 1fr;
+
+        $addMeal-mfg-padding: 30px;
+        padding-left: $addMeal-mfg-padding;
+        padding-right: $addMeal-mfg-padding;
+
+        z-index: 1;
+    }
+}
+
+@mixin mixin-addMeal-mfg-managebar($RM-input) {
+    .addMeal-mfg-managebar {
+        // grid-area: managebar;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 120px;
+        // margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .addMeal-mfg-managebar p,
+    .addMeal-mfg-managebar button,
+    .addMeal-mfg-managebar div {
+        height: max-content;
+    }
+
+    .addMeal-mfg-mbar-text {
+        @include margin-tblr(0, 0, 50px, 0
+    );
+}
+
+.addMeal-mfg-managebar button {
+    @include margin-tblr(0, 0, 30px, 0);
+    @include btn-HWFsRBg(max-content, max-content, 1.1rem, 5px, variables.$color-palette-1);
+
+    $mfg-m-btn-rl: 15px;
+    $mfg-m-btn-tb: 5px;
+    @include padding-tblr($mfg-m-btn-tb, $mfg-m-btn-tb, $mfg-m-btn-rl, $mfg-m-btn-rl);
+}
+
+.addMeal-mfg-mbar-datetime {
+    margin-left: auto;
+    width: max-content;
+}
+
+#datetime-box {
+    // color: variables.$color-palette-1;
+    color: variables.$genaral-text-color-2;
+    margin-right: 50px;
+}
+}
+
+@mixin mixin-addMeal-mfg-food-content($RM-input) {
+    .addMeal-mfg-food-content {
+        // grid-area: food-content;
+        display: flex;
+        background-color: variables.$bg-002;
+        // background-color: rgb(210, 213, 219);
+        border-radius: 20px;
+        flex-direction: column;
+        overflow: scroll;
+        height: 400px;
+        max-width: 90%;
+    }
+
+    .addMeal-mfgc-box {
+        display: flex;
+        height: 100px;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        width: 100%;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .addMeal-mfgc-box-number {
+        width: 30px;
+        height: max-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .addMeal-mfgc-box-img {
+        height: 100px;
+        width: 150px;
+        object-fit: cover;
+        margin-left: 20px;
+        border-radius: 10px;
+    }
+
+    .addMeal-mfgc-box-name,
+    .addMeal-mfgc-box-kcal {
+        width: 150px;
+        height: max-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include margin-tblr(0, 0, 50px, 0);
+    }
+
+    .addMeal-mfgc-box-name {
+        // overflow-x: scroll;
+        overflow: hidden;
+        width: 150px;
+        // @include margin-tblr(0, 0, 50px, 0);
+    }
+
+    .addMeal-mfgc-box-pfc {
+        width: 200px;
+        display: grid;
+        grid-template-areas:
+            'P F C'
+            'num-P num-F num-C';
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        @include margin-tblr(0, 0, 60px, 0);
+    }
+
+    $addMeal-mfgc-box-pfc-template-areas: P, F, C, num-P, num-F, num-C;
+
+    @for $i from 1 to 4 {
+        .addMeal-mfgc-box-pfc-text-#{$i} {
+            grid-area: nth($addMeal-mfgc-box-pfc-template-areas, $i);
+            justify-self: center;
+            align-items: center;
+        }
+
+        .addMeal-mfgc-box-pfc-num-#{$i} {
+            grid-area: nth($addMeal-mfgc-box-pfc-template-areas, ($i + 3));
+            justify-self: center;
+            align-items: center;
+        }
+    }
+
+    .addMeal-mfgc-box-kcal {
+        @include margin-tblr(0, 0, 20px, 0);
+    }
+
+    .addMeal-mfgc-box-unit {
+        margin-left: auto;
+        height: max-content;
+        width: max-content;
+        @include margin-tblr(0, 0, auto, 10dvw);
+    }
+}
+
+@mixin mixin-addMeal-mfg-submit($RM-input) {
+    .addMeal-mfg-submit {
+        // grid-area: submit;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100px;
+        width: 100%;
+
+        margin-top: auto;
+    }
+
+    .addMeal-mfg-submit p {
+        // margin: 0;
+        @include margin-tblr(0, 0, 50px, 0);
+        height: max-content;
+        font-size: 1.4rem;
+    }
+
+    .addMeal-mfg-submit button {
+        @include btn-HWFsRBg(50px, 130px, 1.3rem, 10px, variables.$color-palette-1);
+        @include margin-tblr(0, 0, 0, 70px);
+    }
+}
+
+@mixin mixin-addMeal-popup($RM-input) {
+    .addMeal-popup-container {
+        grid-area: s;
+        height: 100%;
+        width: 100%;
+        // background-color: variables.$color-palette-1;
+        background-color: variables.$bg-001;
+        max-width: 700px;
+        justify-self: center;
+        @include mix.margin-tblr(0, 0, 0, 0);
+        // padding: 40px;
+        // padding-left: 50px;
+        padding: 20px;
+        border-radius: 20px;
+
+        display: flex;
+        flex-direction: column;
+        // justify-content: space-between;
+        align-items: center;
+    }
+
+    .addMeal-popup-con-nav {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+        align-items: center;
+        width: 100%;
+    }
+
+    .addMeal-popup-con-nav button {
+        @include mix.btn-HwFr(35px, 130px, 1rem, 10px);
+        padding: none;
+    }
+
+    .addMeal-popup-con-nav input {
+        margin-left: auto;
+        height: 35px;
+        border-radius: 10px;
+        border: none;
+        font-size: 1rem;
+        padding-inline-start: 15px;
+        outline: none;
+    }
+
+    .addMeal-popup-con-nav div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: variables.$color-palette-1;
+        border: none;
+        border-radius: 5px;
+        height: 35px;
+        width: 35px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .addMeal-popup-con-nav div i {
+        font-size: 1.3rem;
+    }
+
+    .addMeal-popup-con-list {
+        overflow: scroll;
+        height: 370px;
+        width: 100%;
+        margin-top: auto;
+        margin-bottom: 10px;
+        background-color: variables.$bg-002;
+        border-radius: 15px;
+        padding-top: 20px;
+    }
+
+    .addMeal-pcl-row {
+        display: flex;
+        margin-bottom: 40px;
+        align-items: center;
+    }
+
+    .addMeal-pcl-row img {
+        height: 100px;
+        width: 150px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-left: 20px;
+    }
+
+    .addMeal-pcl-name {
+        margin: 0;
+        margin-left: 50px;
+    }
+
+    .addMeal-pcl-kcal {
+        // margin-left: 100px;
+        margin: 0;
+        margin-right: 50px;
+        margin-left: auto;
+    }
+
+    .addMeal-pcl-row button {
+        @include mix.btn-HwFr(35px, 60px, 1rem, 10px);
+        margin-right: 35px;
+    }
+
+    .addMeal-pcl-row .addMeal-popup-btn-delete {
+        background-color: #fc9797;
+    }
+
+    .addMeal-pcl-row div {
+        margin-right: 45px;
+
+        height: 35px;
+        width: 60px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 10px;
+        background-color: variables.$color-palette-1;
+        color: variables.$genaral-text-color-2;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+
+
+    .addMeal-popup-con-nav .addMeal-hidden-box-out {
+        background: #fc9797;
+        height: 35px;
+        width: 35px;
+    }
+
+    .addMeal-pcl-btn-select {
+        @include mix.btn-HwFr(45px, 135px, 1.2rem, 10px);
+        @include mix.margin-tblr(10px, 10px, auto, auto);
+    }
+}
+
+
+
+@include mixin-addMeal-main-tag(variables.$RM);
+
+@include mixin-addMeal-mfg-managebar(variables.$RM);
+@include mixin-addMeal-mfg-food-content(variables.$RM);
+@include mixin-addMeal-mfg-submit(variables.$RM);
+
+@include mixin-addMeal-popup(variables.$RM);

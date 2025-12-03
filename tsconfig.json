@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "ESNext",
+        "jsx": "react-jsx",
+        "jsxImportSource": "tsx-dom",
+        "types": [
+            "tsx-dom"
+        ],
+        "lib": [
+            "ES2020",
+            "DOM"
+        ],
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "rootDir": ".",
+        "outDir": "./js",
+        "moduleResolution": "node"
+    },
+    "include": [
+        "ts/**/*.ts",
+        "tsx/**/*.tsx"
+    ]
+}

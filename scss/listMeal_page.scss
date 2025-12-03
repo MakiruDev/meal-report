@@ -1,0 +1,250 @@
+@use 'variables';
+@use 'sass:math';
+
+
+// css code
+@mixin mixin-listMeal-main($RM-input) {
+    .listMeal-main {
+        background-color: variables.$bg-001;
+
+        // margin-top: auto;
+        // margin-bottom: auto;
+
+        display: flex;
+        justify-content: center;
+    }
+}
+
+
+@mixin mixin-listMeal-main-divner($RM-input) {
+    .listMeal-main-divner {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        color: variables.$genaral-text-color-1;
+        // background-color: variables.$bg-color-2;
+
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+}
+
+
+@mixin mixin-listMeal-main-divner-text($RM-input) {
+    .listMeal-main-divner-text {
+        font-size: 2rem;
+        color: variables.$genaral-text-color-2;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: max-content;
+        width: 80%;
+        gap: 20px;
+
+        margin-bottom: 30px;
+        margin-top: 20px;
+    }
+
+    .listMeal-main-divner-text p {
+        margin: 0;
+    }
+
+    .listMeal-main-divner-text a {
+        height: max-content;
+        font-size: 1.3rem;
+        text-decoration: none;
+        background-color: variables.$color-palette-1;
+        color: variables.$genaral-text-color-2;
+        border-radius: 7px;
+        padding: 5px 15px;
+
+        margin-left: 10px;
+    }
+
+    .listMeal-main-divner-text a:nth-child(2) {
+        display: none;
+        margin-left: 0px;
+    }
+
+    .listMeal-main-divner-text a:nth-child(3) {
+        display: flex;
+    }
+
+    .listMeal-mdt-search {
+        // display: flex;
+        // justify-self: flex-end;
+        // right: 0;
+        margin-left: auto;
+        width: max-content;
+        height: max-content;
+
+        display: flex;
+    }
+
+    .listMeal-mdt-search input {
+        height: 35px;
+        width: 200px;
+        border: none;
+        border-radius: 5px;
+        padding: 0 10px;
+        font-size: 1rem;
+        outline: none;
+        // color: variables.$genaral-text-color-2;
+    }
+
+    .listMeal-mdt-search div {
+        height: 35px;
+        width: 40px;
+        border: none;
+        border-radius: 5px;
+        margin-left: 5px;
+        background-color: variables.$color-palette-1;
+        cursor: pointer;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .listMeal-mdt-search div i {
+        font-size: 1.2rem;
+    }
+}
+
+@mixin mixin-listMeal-main-divner-gridner($RM-input, $col, $amount: 20) {
+    .listMeal-main-divner-gridner {
+        display: grid;
+        grid-template-columns: repeat($col, 300px);
+        grid-template-rows: repeat(math.ceil($amount / $col), 300px); // math.ceil();
+        // row-gap: 20px;
+        gap: 10px;
+        justify-content: center;
+
+        height: 100%;
+        width: 100%;
+        // background-color: variables.$bg-color-3;
+    }
+}
+
+@mixin mixin-listMeal-main-divner-gridner-box($RM-input) {
+    .listMeal-main-divner-gridner-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 200px;
+        width: 1fr;
+        // background-color: variables.$bg-color-3;
+        // border-radius: 20px;
+
+        position: relative;
+    }
+
+    .listMeal-main-divner-gridner-box .listMeal-gridner-box-img-1,
+    .listMeal-main-divner-gridner-box .listMeal-gridner-box-img-2,
+    .listMeal-main-divner-gridner-box div {
+        position: absolute;
+        z-index: 4;
+
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+
+        border-radius: 20px;
+    }
+
+    .listMeal-main-divner-gridner-box .listMeal-gridner-box-img-2 {
+        z-index: 2;
+        opacity: 0.5;
+    }
+
+    .listMeal-main-divner-gridner-box .listMeal-gridner-box-img-1:hover {
+        cursor: pointer;
+        // transform: scale(1.2);
+        // transition: all 0.3s ease-in-out;
+        animation: boximg 0.3s ease-in-out forwards;
+    }
+
+    @keyframes boximg {
+        0% {
+            opacity: 1;
+        }
+
+        99% {
+            opacity: 0.5;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+
+    .listMeal-main-divner-gridner-box div {
+        z-index: 1;
+        // background-color: variables.$bg-color-4;
+        background-color: variables.$bg-new-color-1;
+        // opacity: 0.5;
+    }
+
+    .listMeal-main-divner-gridner-box p {
+        position: absolute;
+        z-index: 3;
+
+        margin: 0;
+        color: variables.$genaral-text-color-1;
+        font-size: 1.2rem;
+    }
+
+
+    // .listMeal-main-divner-gridner-box div:hover {
+    //     display: flex;
+    //     cursor: pointer;
+    // }
+
+}
+
+
+@include mixin-listMeal-main(variables.$RM);
+@include mixin-listMeal-main-divner(variables.$RM);
+@include mixin-listMeal-main-divner-text(variables.$RM);
+@include mixin-listMeal-main-divner-gridner(variables.$RM, 4);
+@include mixin-listMeal-main-divner-gridner-box(variables.$RM);
+// ------------------------------------------------------------------------------
+
+
+
+// responsive functions
+@mixin res-max-width($max-width-input, $RM-Use, $res-col) {
+    @media (max-width: $max-width-input) {
+
+        @include mixin-listMeal-main($RM-Use);
+        @include mixin-listMeal-main-divner($RM-Use);
+        @include mixin-listMeal-main-divner-text($RM-Use);
+        @include mixin-listMeal-main-divner-gridner($RM-Use, $res-col);
+        @include mixin-listMeal-main-divner-gridner-box($RM-Use);
+    }
+}
+
+// responsive code
+@include res-max-width(1260px, 1, 3);
+@include res-max-width(980px, 1, 2);
+@include res-max-width(720px, 1, 1);
+@media (max-width: 720px) {
+    .listMeal-main-divner-text a:nth-child(2) {
+        display: flex;
+    }
+
+    .listMeal-main-divner-text a:nth-child(3) {
+        display: none;
+    }
+}
+
+// @include res-max-width(375px, 0.6);
+// @include res-max-width(290px, 0.4);

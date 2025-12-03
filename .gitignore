@@ -1,0 +1,33 @@
+# Node modules
+node_modules/
+web_modules/
+
+# Build output
+dist/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# macOS
+.DS_Store
+
+# ================================
+# Keep folders css/, js/, img/ empty
+# but allow .gitkeep files only
+# ================================
+
+css/*
+!css/.gitkeep
+
+js/*
+!js/.gitkeep
+
+img/*
+!img/.gitkeep
+
+# Pic inside linkfile that should not be added
+linkfile/makeup_img.png
