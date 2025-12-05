@@ -173,7 +173,13 @@
         flex-direction: column;
         overflow: scroll;
         height: 400px;
+        min-width: 70vw;
         max-width: 90%;
+
+    }
+
+    .addMeal-mfg-food-content p {
+        @include mix.margin-tblr(auto, auto, auto, auto);
     }
 
     .addMeal-mfgc-box {

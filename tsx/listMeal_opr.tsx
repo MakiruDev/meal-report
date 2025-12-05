@@ -1,4 +1,5 @@
 
+// tsc --watch
 
 const listMeal_mdg = document.getElementById('listMeal-main-divner-gridner') as HTMLElement;
 let EleNowId: Array<number> = [];
