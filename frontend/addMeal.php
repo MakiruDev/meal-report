@@ -64,7 +64,7 @@ function mainContent() { ?>
                 <div class="addMeal-mfg-managebar">
                     <p class="addMeal-mfg-mbar-text">add meal</p>
                     <!-- <button type="button" class="addMeal-mfg-mbar-btn-meal">meal</button> -->
-                    <button type="button" class="addMeal-mfg-mbar-btn-food" id="id-addMeal-mfg-mbar-btn-food">addfood inlist</button>
+                    <button type="button" class="addMeal-mfg-mbar-btn-food" id="id-addMeal-mfg-mbar-btn-food">addfood in list</button>
                     <div class="addMeal-mfg-mbar-datetime" id="datetime-box">datetime
                         <!-- addMeal-mfg-mbar-btn- -->
                     </div>
@@ -73,9 +73,9 @@ function mainContent() { ?>
 
 
                 <!-- Food content -->
-                <div class="addMeal-mfg-food-content">
+                <div class="addMeal-mfg-food-content" id="id-addMeal-mfg-food-content">
 
-                    <?php for ($i = 0; $i < 20; $i++) : ?>
+                    <?php function func1() { for ($i = 0; $i < 20; $i++) : ?>
 
                         <div class="addMeal-mfgc-box">
                             <p class="addMeal-mfgc-box-number">1</p>
@@ -95,7 +95,13 @@ function mainContent() { ?>
                             <div class="addMeal-mfgc-box-unit">unit</div>
                         </div>
 
-                    <?php endfor; ?>
+                    <?php endfor; }
+                        // func1();
+                    ?>
+
+                    <p>
+                        click "addfood in list" to add your food!
+                    </p>
 
                 </div>
 

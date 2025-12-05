@@ -43,7 +43,7 @@
     <header>
         <div class="genaral-navbar-div">
 
-            <a href="./listMeal.php">listMeal</a>
+            <a href="./listMeal.php">listFood</a>
             <a href="./addFood.php">addFood</a>
             <a href="./addMeal.php">addMeal</a>
 

@@ -1,6 +1,7 @@
 
 import { search } from './listMeal_opr.js';
 
+// tsc --watch
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 // Global State
 
@@ -126,6 +127,9 @@ const real_select_list: realSelectListType = new RealSelectListClass();
 // real_select_list.add(1, 2);
 // real_select_list.delete(1);
 
+let text_temp: boolean = true;
+
+
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 // DOM Elements
 
@@ -152,6 +156,7 @@ const addMealPopupAdd = document.getElementById('addMeal-popup-add') as HTMLButt
 const addMealPopupDelete = document.getElementById('addMeal-popup-delete') as HTMLButtonElement | null;
 
 
+const id_addMeal_mfg_food_content = document.getElementById("id-addMeal-mfg-food-content") as HTMLDivElement;
 
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
@@ -209,10 +214,12 @@ function ToSelectList(btnDataParam: datasetType, params: typeof EleNowData = Ele
 }
 
 
-async function fetchMealRow() {
-    const output: typeof EleNowData = await search(2);
-    console.log("check type in fetchMealRow()", typeof output.id[1]);
-    setEleNow(output);
+async function fetchMealRow(param1: number = 0) {
+    if (param1 === 0) {
+        const output: typeof EleNowData = await search(2);
+        // console.log("check type in fetchMealRow()", typeof output.id[1]);
+        setEleNow(output);
+    }
 
     for (let i = 0; i < EleNowData.id.length; i++) {
         addMealPopuplist?.appendChild(addMealPclRow(i));
@@ -231,7 +238,7 @@ function clearMealRow() {
     console.log("Clearing meal rows");
 
     for (let i = 0; i < EleNowData.id.length; i++) {
-        console.log(`Removing element with id: id-addMeal-pcl-row-${EleNowData.id[i]}`);
+        // console.log(`Removing element with id: id-addMeal-pcl-row-${EleNowData.id[i]}`);
         document.getElementById(`id-addMeal-pcl-row-${EleNowData.id[i]}`)?.remove();
     }
 
@@ -251,6 +258,14 @@ function datasetToObj(params: string | undefined) {
     }
 
     return null;
+}
+
+function addMeal_SelectList_Show() {
+    const array = real_select_list.index
+    for (let k = 0; k < array.length; k++) {
+        id_addMeal_mfg_food_content.appendChild(addMealSelectList(real_select_list.index[k], EleAllData, k + 1));
+    }
+
 }
 
 
@@ -290,11 +305,11 @@ function addMealPclRow(indexNum: number, EleDataParam: typeof EleNowData = EleNo
 }
 
 
-
-function addMealSelectList(inputIndex: number, EleNowDataParam: typeof EleNowData = EleNowData) {
+// id_addMeal_mfg_food_content
+function addMealSelectList(inputIndex: number, EleNowDataParam: typeof EleNowData = EleNowData, nums: number = 1) {
     return (
         <div class="addMeal-mfgc-box">
-            <p class="addMeal-mfgc-box-number">1</p>
+            <p class="addMeal-mfgc-box-number">{nums}</p>
             <img class="addMeal-mfgc-box-img" src={`../img/${EleNowDataParam.name[inputIndex]}.${EleNowDataParam.ext[inputIndex]}`} alt=""></img>
             <p class="addMeal-mfgc-box-name">{EleNowDataParam.name[inputIndex]}</p>
             <div class="addMeal-mfgc-box-pfc">
@@ -367,23 +382,7 @@ addMealHiddenBoxOut?.addEventListener("click", () => {
         if (btnDelete === null) return;
         // i++;
         if (btnAdd === null) return;
-        // i++;
-        // console.log("af btn add & delete");
-        // i++;
 
-        // const rawDeleteDataset = btnDelete?.dataset.addmealPopupBtn;
-        // const rawAddDataset = btnAdd?.dataset.addmealPopupBtn;
-        // console.log("raw Dataset", rawDeleteDataset, rawAddDataset);
-
-
-        // const elDelete = document.querySelector(`[data-addmeal-popup-btn="${rawDeleteDataset}"]`);
-        // const elAdd = document.querySelector(`[data-addmeal-popup-btn="${rawAddDataset}"]`);
-        // console.log("el ", elDelete, elAdd);
-        // console.log("el bf adClass", elDelete?.classList, elAdd?.classList);
-
-        // elDelete?.classList.add('dis-none');
-        // elAdd?.classList.remove('dis-none');
-        // i++;
         btnDelete.classList.add('dis-none');
         btnAdd.classList.remove('dis-none');
         // console.log("el af adClass", elDelete, elAdd);
@@ -405,6 +404,8 @@ addMealHiddenBoxOut?.addEventListener("click", () => {
     foodSelectList.clear();
     console.log(foodSelectList);
     console.log("realSelectList", real_select_list);
+
+    addMeal_SelectList_Show();
 });
 
 
@@ -418,7 +419,9 @@ searchInput?.addEventListener('input', async () => {
     console.log("input : ", searchInput.value);
     const output = await search(1, searchInput);
 
+    clearMealRow()
     setEleNow(output);
+    fetchMealRow(1);
 
 });
 
@@ -469,19 +472,7 @@ addMealPopuplist?.addEventListener('click', (e) => {
     const rawAntiDataset = antiBtn.dataset.addmealPopupBtn;
     const antiBtnData: datasetType | null = datasetToObj(rawAntiDataset);
     if (!antiBtnData) return;
-    // console.log('rawAntiDataset', rawAntiDataset);
-    // console.log('antiBtnData', antiBtnData);
 
-
-    // const el = document.querySelector(`[data-addMeal-popup-btn="${rawDataset}"]`);
-    // const antiEl = document.querySelector(`[data-addMeal-popup-btn="${rawAntiDataset}"]`);
-    // console.log('el', el);
-    // console.log('antiEl', antiEl);
-
-
-
-    // el?.classList.add('dis-none');
-    // antiEl?.classList.remove('dis-none');
     btn?.classList.add('dis-none');
     antiBtn?.classList.remove('dis-none');
 
